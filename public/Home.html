@@ -1,0 +1,465 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.1/css/all.min.css" integrity="sha512-5Hs3dF2AEPkpNAR7UiOHba+lRSJNeM2ECkwxUIxC1Q/FLycGTbNapWXB4tP889k5T5Ju8fs4b1P5z/iB4nMfSQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+  
+</head>
+<body>
+  <nav class="navbar navbar-expand-lg bg-dark text-white" >
+    <div class="container-fluid">
+        <a class="navbar-brand logo text-primary" href="#">DIGITAL LIBRARY</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" 
+                aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon" style="background-image: url('data:image/svg+xml;charset=UTF8,<svg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%270 0 30 30%27 fill=%27white%27><path stroke=%27rgba(255, 255, 255, 1)%27 stroke-width=%272%27 stroke-linecap=%27round%27 stroke-miterlimit=%2710%27 d=%27M4 7h22M4 15h22M4 23h22%27/></svg>');"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                <li class="nav-item">
+                    <a class="nav-link text-white" aria-current="page" href="http://localhost:3000/home">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link text-white" href="http://localhost:3000/about">About</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link text-white" href="http://localhost:3000/contact">Contact</a>
+                </li>
+                
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle text-white" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        Browse
+                    </a>
+                    <ul class="dropdown-menu">
+   
+
+                        <li> <a href="#" class="dropdown-item"  id="new-books-link">New Arrivals</a>
+                          <div class="modal" id="new-books-modal">
+                              <div class="modal-content">
+                                  <span class="modal-close" id="close-modal">&times;</span>
+                                  <div class="modal-header">Newly Added Books</div>
+                                  <div id="new-books-container">
+                                      <!-- Book 1 -->
+                                      <div class="book-container">
+                                          <img src="Assets/book-1.png" alt="Book 1" class="book-image">
+                                          <div class="book-details">
+                                              <div class="book-title">The Art of War</div>
+                                              <div class="book-author"><strong>Author:</strong> Sun Tzu</div>
+                                              <div class="book-genre"><strong>Genre:</strong> Strategy</div>
+                                              <div class="book-date"><strong>Arrival Date:</strong> 2024-12-20</div>
+                                              <button class="btn-primary"><a href="http://localhost:3000/search">Search</a></button>
+                                          </div>
+                                      </div>
+                                      <!-- Book 2 -->
+                                      <div class="book-container">
+                                          <img src="Assets/book10.jpg" alt="Book 2" class="book-image">
+                                          <div class="book-details">
+                                              <div class="book-title">1984</div>
+                                              <div class="book-author"><strong>Author:</strong> George Orwell</div>
+                                              <div class="book-genre"><strong>Genre:</strong> Dystopian</div>
+                                              <div class="book-date"><strong>Arrival Date:</strong> 2024-12-18</div>
+                                              <button class="btn-primary"><a href="http://localhost:3000/search">Search</a></button>
+                                          </div>
+                                      </div>
+                                      <!-- Book 3 -->
+                                      <div class="book-container">
+                                          <img src="Assets/book3.jpg" alt="Book 3" class="book-image">
+                                          <div class="book-details">
+                                              <div class="book-title">To Kill a Mockingbird</div>
+                                              <div class="book-author"><strong>Author:</strong> Harper Lee</div>
+                                              <div class="book-genre"><strong>Genre:</strong> Fiction</div>
+                                              <div class="book-date"><strong>Arrival Date:</strong> 2024-12-15</div>
+                                              <button class="btn-primary"><a href="http://localhost:3000/search">Search</a></button>
+                                          </div>
+                                      </div>
+                                  </div>
+                              </div>
+                          </div></li>
+                        <li><a class="dropdown-item" href="http://localhost:3000/trending">Trending</a></li>
+                        <li><a class="dropdown-item" href="http://localhost:3000/random">Random</a></li>
+                        
+        
+                    </ul>
+                </li>
+            </ul>
+            
+
+                <button class="btn btn-outline-primary" type="submit"><a href="http://localhost:3000/search" id="search-btn">Search</a></button>
+                <button class="btn btn-outline-primary" id="logout" type="submit">Logout</button>
+           
+        </div>
+    </div>
+</nav>
+<style>
+  #select-option{
+    background-color: #212529;
+    color: #000;
+    width: 60px;
+    background-color: #fff;
+    border: 1.5px solid #f1f0f0;
+    outline: none;
+
+  }
+  .navbar{
+    height: 60px;
+
+  }
+  #search{
+    background-color: #212529;
+    color: #000;
+    margin-right: 2px;
+    padding: 10px;
+    background-color: #fff;
+    
+    
+
+  }
+  .btn-primary{
+    height: 30px;
+    width: 100px;
+    background-color: #106EFD;
+    border: 0;
+    border-radius: 5px;
+    outline: 0;
+    cursor: pointer;
+    
+    color: #fff;
+    
+
+  }
+  .btn-primary a{
+    text-decoration: none;
+    color:#fff;
+  }
+  #search::placeholder{
+    color: #000;
+  }
+  s#earch-btn a{
+    
+    text-decoration: none;
+    
+  }
+  
+</style>
+
+      <div class="container">
+        <div class="left-side">
+            <h1>Streamline Library <br> Operations Effortlessly </h1>
+            <p>Empower Your Library with seamless Managemnet and <br> Redefine Book Exchanges Enhancing Every Reader's journey </p>
+        </div>
+        <div class="right-side">
+            <img src="Assets/img5-transformed.png" alt="img">
+        </div>
+      </div>
+      <!-- Footer -->
+      <div class="footer">
+        <footer class="text-center text-lg-start bg-body-tertiary text-muted">
+          <!-- Section: Social media -->
+          <section class="d-flex justify-content-center justify-content-lg-between p-4 border-bottom">
+            <!-- Left -->
+            <div class="me-5 d-none d-lg-block">
+              <span>Get connected with us on social networks:</span>
+            </div>
+            <!-- Left -->
+      
+            <!-- Right -->
+            <div>
+              <a href="" class="me-4 text-reset">
+                <i class="fab fa-facebook-f icon"></i>
+              </a>
+              <a href="" class="me-4 text-reset">
+                <i class="fab fa-twitter icon"></i>
+              </a>
+              <a href="" class="me-4 text-reset">
+                <i class="fab fa-google icon"></i>
+              </a>
+              <a href="" class="me-4 text-reset ">
+                <i class="fab fa-instagram icon"></i>
+              </a>
+              <a href="" class="me-4 text-reset">
+                <i class="fab fa-linkedin icon"></i>
+              </a>
+              <a href="" class="me-4 text-reset">
+                <i class="fab fa-github icon"></i>
+              </a>
+            </div>
+            <!-- Right -->
+          </section>
+          <!-- Section: Social media -->
+      
+          <!-- Section: Links -->
+          <section class="links">
+            <div class="container text-center text-md-start mt-5">
+              <!-- Grid row -->
+              <div class="row mt-3">
+                <!-- Grid column -->
+                <div class="col-md-3 col-lg-4 col-xl-3 mx-auto mb-4">
+                  <!-- Content -->
+                  <h6 class="text-uppercase fw-bold mb-4" style="color:#106EFD;">
+                    <i class="fas fa-gem me-3" style="color: #142F42;"></i>DIGITAL LIBRARY
+                  </h6>
+                  <p>
+                    Here you can use rows and columns to organize your footer content.
+                    Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+                  </p>
+                </div>
+                <!-- Grid column -->
+      
+                <!-- Grid column -->
+                <div class="col-md-2 col-lg-2 col-xl-2 mx-auto mb-4">
+                  <!-- Links -->
+                  <h6 class="text-uppercase fw-bold mb-4">Products</h6>
+                  <p><a href="#!" class="text-reset">Trending</a></p>
+                  <p><a href="#!" class="text-reset">New Arrival</a></p>
+                  <p><a href="#!" class="text-reset">Collection</a></p>
+                  <p><a href="#!" class="text-reset">Upcoming</a></p>
+                </div>
+                <!-- Grid column -->
+      
+                <!-- Grid column -->
+                <div class="col-md-3 col-lg-2 col-xl-2 mx-auto mb-4">
+                  <!-- Links -->
+                  <h6 class="text-uppercase fw-bold mb-4">Useful links</h6>
+                  <p><a href="Advance.html" class="text-reset">Advance Search</a></p>
+                  <p><a href="borrow.html" class="text-reset">Borrow Books</a></p>
+                  <p><a href="history.html" class="text-reset">Borrow History</a></p>
+                  <p><a href="#!" class="text-reset">Help</a></p>
+                </div>
+                <!-- Grid column -->
+      
+                <!-- Grid column -->
+                <div class="col-md-4 col-lg-3 col-xl-3 mx-auto mb-md-0 mb-4">
+                  <!-- Links -->
+                  <h6 class="text-uppercase fw-bold mb-4">Contact</h6>
+                  <p><i class="fas fa-home me-3"></i> Lahore, NY 10012, Pakistan</p>
+                  <p><i class="fas fa-envelope me-3"></i> info@example.com</p>
+                  <p><i class="fas fa-phone me-3"></i> +92 3170722366</p>
+                  <p><i class="fas fa-print me-3"></i> +92 3170722366</p>
+                </div>
+                <!-- Grid column -->
+              </div>
+              <!-- Grid row -->
+            </div>
+          </section>
+          <!-- Section: Links -->
+      
+          <!-- Copyright -->
+          <div class="text-center p-4 end">
+            © 2024 Copyright:
+            <a class="text-reset fw-bold" href="" style="color: #106EFD;">DIGITAL LIBRARY</a>
+          </div>
+          <!-- Copyright -->
+        </footer>
+      </div>
+      
+      <style>
+         .modal {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            justify-content: center;
+            align-items: center;
+        }
+
+        .modal-content {
+            background: #fff;
+            border-radius: 10px;
+            padding: 20px;
+            width: 90%;
+            max-width: 800px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+            overflow-y: auto;
+            max-height: 80vh;
+        }
+
+        .modal-header {
+            font-size: 22px;
+            font-weight: bold;
+            margin-bottom: 15px;
+            text-align: center;
+            position: relative;
+        }
+
+        .modal-close {
+            position: absolute;
+            top: 10px;
+            right: 15px;
+            font-size: 18px;
+            font-weight: bold;
+            cursor: pointer;
+            color: #333;
+        }
+
+        .book-container {
+            display: flex;
+            gap: 20px;
+            margin-bottom: 20px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .book-image {
+            flex: 1;
+            min-width: 150px;
+            max-width: 200px;
+            object-fit: cover;
+        }
+
+        .book-details {
+            flex: 2;
+            padding: 15px;
+        }
+
+        .book-title {
+            font-size: 18px;
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+
+        .book-author,
+        .book-genre,
+        .book-date {
+            font-size: 14px;
+            margin-bottom: 5px;
+            color: #555;
+        }
+        a{
+          text-decoration: none;
+        }
+        .icon{
+            height: 30px;
+            width: 30px;
+            border-radius: 50%;
+            padding: 4px;
+            font-size: 16px;
+            border: 2px solid #000;
+            color: #fff;
+            background-color: #142F42;
+            text-align: center;
+
+        }
+        #logout{
+          margin-left: 5px;
+
+        }
+       
+       
+        .linkend{
+          color: #106EFD;
+        }
+        .footer{
+          height: 500px;
+          overflow: hidden;
+        }
+        footer .links{
+          margin-top: -150px;
+        }
+        footer .end{
+          margin-top: -140px;
+
+        }
+       
+        .container
+        {
+            height: 100vh;
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            
+        }
+        .left-side{
+            height: 200px;
+            width: 45%;
+            margin-top: -20px;
+            color: #000;
+            
+        }
+        .right-side{
+            width: 55%;
+            height: 400px;
+            
+
+        }
+        .right-side img{
+            width: 100%;
+            height: 100%;
+            clip-path: polygon(30% 0%, 70% 0%, 100% 30%, 100% 70%, 70% 100%, 30% 100%, 0% 70%, 0% 30%);
+            
+            
+        }
+        
+        .linkColor{
+            color: #fff;
+
+        }
+        body{
+            background-color:#D8D7D7  ;
+            color: #000;
+
+        }
+        #select-option{
+            border-radius: 10px;
+            margin-right: 5px;
+            height: 50px;
+
+        }
+
+
+
+
+
+      </style>
+      <script>
+   document.getElementById("logout").addEventListener("click", () => {
+    fetch('/logout', {
+        method: 'POST',
+        credentials: 'include' // Include cookies for session handling
+    })
+    .then((response) => {
+        if (response.ok) {
+            // Redirect to login page
+            window.location.href = '/login';
+        } else {
+            return response.json().then((data) => {
+                throw new Error(data.message || "Logout failed.");
+            });
+        }
+    })
+    .catch((error) => {
+        console.error("Error during logout:", error);
+        alert("An error occurred while logging out. Please try again.");
+    });
+});
+
+
+const modal = document.getElementById('new-books-modal');
+        const openModal = document.getElementById('new-books-link');
+        const closeModal = document.getElementById('close-modal');
+
+        openModal.addEventListener('click', (e) => {
+            e.preventDefault();
+            modal.style.display = 'flex';
+        });
+
+        closeModal.addEventListener('click', () => {
+            modal.style.display = 'none';
+        });
+
+        window.addEventListener('click', (e) => {
+            if (e.target === modal) modal.style.display = 'none';
+        });
+
+      </script>
+</body>
+</html>

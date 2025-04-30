@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Library Portal</title>
+</head>
+<body>
+    <div class="container">
+        <div class="introLine">
+            <h1>Welcome To Library <br>Portal</h1>
+            <p>Your Gateway to Unlimited Knowledge</p>
+        </div>
+        <div class="form">
+            <form id="signupForm" enctype="multipart/form-data">
+                <h3>Sign Up</h3>
+                <hr>
+                <label for="username">Username</label>
+                <br>
+                <input type="text" id="username" name="username" placeholder="Username" required>
+                <br>
+                <label for="email">Email</label>
+                <br>
+                <input type="email" id="email" name="email" placeholder="Email" required>
+                <br>
+                <label for="Phone">Phone Number</label>
+                <br>
+                <input type="text" id="Phone" name="phone" placeholder="Phone Number" required>
+                <br>
+                <label for="password">Password</label>
+                <br>
+                <input type="password" id="password" name="password" placeholder="Password" required>
+                <br>
+                <label for="role">Role</label>
+                <br>
+                <label for="Librarian">Librarian</label>
+                <input type="radio" id="Librarian" name="role" value="Librarian" required>
+                <label for="Student">Student</label>
+                <input type="radio" id="Student" name="role" value="Student" required>
+                <br>
+                <label for="img">Insert Image</label>
+                <input type="file" id="img" name="insert-img" required>
+                <br>
+                <button type="submit" id="createAccount">Create Account</button>
+                <button type="button" id="login" onclick='changeLocation()'>Login</button>
+                <p class="forgot">By creating an account you agree to our &copy; terms and conditions</p>
+                <p class="new">Already Registered? <a href="http://localhost:3000/login">Login</a> to explore.</p>
+            </form>
+        </div>
+    </div>
+
+    <style>
+        *{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    
+
+
+
+}  
+.container{
+    height: 100vh;
+    width: 100%;
+    background-color: #09152D;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+
+}
+.introLine{
+    width: 55%;
+    height: 200px;
+    color: #fff;
+    text-align: center;
+    font-size: 30px;
+}
+.form{
+    width: 45%;
+    height: 300px;
+    margin-top: -265px;
+    
+
+}
+form{
+    width: 450px;
+    height:575px;
+    border: 2px solid #000;
+    color: #fff;
+    padding:20px;
+    box-shadow: 10px 10px  5px black;
+
+}
+.form hr{
+    width: 400px;
+    margin-left: 5px;
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+.form h3{
+    color: #fff;
+    margin-top: 10px;
+    text-align: center;
+}
+#username{
+    outline: none;
+    padding:5px;
+    width: 400px;
+    margin-top: 5px;
+    margin-bottom: 20px;
+}
+#password{
+    outline: none;
+    padding:5px;
+    width: 400px;
+    margin-top: 5px;
+    margin-bottom: 20px;
+}
+#email{
+    outline: none;
+    padding:5px;
+    width: 400px;
+    margin-top: 5px;
+    margin-bottom: 20px;
+
+}
+#Phone{
+    outline: none;
+    padding:5px;
+    width: 400px;
+    margin-top: 5px;
+    margin-bottom: 20px;
+}
+#login{
+    outline: none;
+    padding:5px;
+    width: 400px;
+  
+    margin-bottom: 20px;
+    background-color: #2C7A46;
+    color: #fff;
+
+}
+#createAccount{
+    outline: none;
+    padding:5px;
+    width: 400px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    background-color:#218FF0;
+    color: #fff;
+
+}
+.forgot{
+    margin-top: -12px;
+    text-align: center;
+    text-decoration: none;
+    width: 400px;
+    font-size: 15px;
+    
+    
+
+}
+.new{
+    margin-top: -5px;
+    text-align: center;
+    
+}
+a{
+    text-decoration: none;
+}
+
+
+    </style>
+
+    <script>
+        document.getElementById("signupForm").addEventListener("submit", async function (event) {
+            event.preventDefault();
+
+            const createAccountButton = document.getElementById("createAccount");
+            createAccountButton.textContent = "Submitting...";
+            createAccountButton.disabled = true;
+
+            const formData = new FormData();
+            formData.append("username", document.getElementById("username").value);
+            formData.append("email", document.getElementById("email").value);
+            formData.append("phone", document.getElementById("Phone").value);
+            formData.append("password", document.getElementById("password").value);
+            formData.append("role", document.querySelector("input[name='role']:checked").value);
+            formData.append("insert-img", document.getElementById("img").files[0]);
+
+            try {
+                const response = await fetch("/signup", {
+                    method: "POST",
+                    body: formData,
+                });
+
+                const result = await response.json();
+
+                if (response.ok) {
+                    alert(result.message);
+                } else {
+                    alert(`Error: ${result.message}`);
+                }
+            } catch (error) {
+                console.error("Error submitting form:", error);
+                alert("An error occurred while submitting the form. Please check your network and try again.");
+            } finally {
+                createAccountButton.textContent = "Create Account";
+                createAccountButton.disabled = false;
+            }
+        });
+        function changeLocation(){
+            link= "http://localhost:3000/login";
+                location.href=link;
+        }
+    </script>
+</body>
+</html>

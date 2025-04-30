@@ -1,0 +1,317 @@
+
+.fee-container-grid
+{
+
+
+display: grid;
+grid-template-columns: repeat(4, 1fr);
+grid-template-rows: repeat(3, 1fr);
+gap: 20px;
+margin-top: -30px;
+
+}
+.fee-container{
+    height: 500px;
+    border: 1px solid #000;
+    padding: 30px;
+    margin-top: 50px;
+    overflow: auto;
+    
+}
+.fee-container-grid h1{
+    text-align: center;
+
+}
+
+.parent1{
+    display: flex;
+}
+
+.parent2 {
+display: grid;
+grid-template-columns: repeat(2, 1fr);
+grid-template-rows: repeat(1, 1fr);
+gap: 7px;
+
+
+}
+.con1{
+height: 700px;
+width:220px;
+border: 2px solid black;
+display: flex;
+flex-direction: column;
+padding: 30px;
+
+
+}
+.con2{
+height: 550px;
+width:220px;
+border: 2px solid black;
+display: flex;
+flex-direction: column;
+padding: 30px;
+
+
+}
+.con1 form button{
+display: block;
+height: 30px;
+width: 150px;
+color: #fff;
+background-color: green;
+margin-top: 20px;
+border: 0;
+outline: 0;
+
+}
+.book-details{
+text-align: center;
+margin-top: 20px;
+
+}
+.con2 .img{
+width: 150px;
+height: 290px;
+}
+.con2 img{
+height: 100%;
+width: 100%;
+}
+.con1 .img{
+width: 150px;
+height: 290px;
+}
+.con1 img{
+height: 100%;
+width: 100%;
+}
+.grid-parent{
+display: grid;
+grid-template-columns: repeat(3, 1fr);
+grid-template-rows: repeat(4, 1fr);
+gap: 18px;
+}
+.div1{
+height: 500px;
+width: 800px;
+border: 1px solid #000;
+
+
+
+
+padding: 30px;
+overflow: auto;
+} 
+.div1 #title, #name{
+width: 160px;
+height: 30px;
+padding: 2px;
+
+
+}
+#select-option1{
+width: 80px;
+height: 30px;
+}
+#select-option2{
+width: 200px;
+height: 30px;
+}
+#Genre{
+width: 220px;
+height: 30px;
+
+}
+.div1  h1{
+text-align: center;
+}
+.div2{
+height: 500px;
+width: 400px;
+border: 1px solid #000;
+padding: 30px;
+overflow: auto;
+} 
+.div2 h1{
+
+text-align: center;
+}
+.div2 form h3{
+margin-top: 20px;
+text-align: center;
+
+
+}
+
+.div2 .form2 h3{
+margin-top: 20px;
+text-align: center;
+}
+.div2 .form2 button{
+background-color: rgb(90, 90, 90);
+margin-top: 10px;
+width: 330px;
+height: 35px;
+}
+.div2 form input{
+width: 330px;
+margin-top: 10px;
+margin-bottom: 5px;
+
+}
+.div2 form label{
+font-size: 16px;
+font-weight: 700;
+}
+.div2 form button{
+width: 330px;
+height: 30px;
+border: 0;
+outline:0;
+margin-top: 10px;
+background-color: rgb(68, 68, 241);
+color: #fff;
+}
+.div2 form #Genre{
+width: 330px;
+}
+
+
+.space{
+height: 100px;
+}
+
+
+    
+.navbar{
+    height: 70px;
+}
+  #select-option{
+background-color: #212529;
+color: #fff;
+width: 70px;
+border: 1.5px solid #f1f0f0;
+
+}
+#search{
+background-color: #212529;
+color: #fff;
+margin-right: 2px;
+
+
+}
+#history{
+margin-left: 10px ;
+
+}
+#history{
+color: #fff;
+}
+a{
+text-decoration: none;
+}
+a:hover{
+
+color: #fff;
+}
+#search::placeholder{
+color: #fff;
+}
+#search-btn a{
+
+text-decoration: none;
+
+}
+#search-btn:hover{
+color: #fff;
+}
+
+#search{
+background-color: #212529;
+color: #fff;
+margin-right: 2px;
+height: 50px;
+
+}
+#search::placeholder{
+color: #fff;
+}
+#logout{
+margin-left: 5px;
+
+}
+#select-option{
+border-radius: 10px;
+margin-right: 5px;
+height: 50px;
+
+}
+.main-container{
+    height: 100vh;
+    width: 100%;
+
+}
+.main{
+    height: 100vh;
+    width: 100%;
+    padding: 30px 100px 50px 100px;
+
+}
+.banner{
+    height: 50px;
+    width: 100%;
+    background-color: darkblue;
+    text-align: center;
+    color: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 20px;
+    margin-bottom: 70px;
+}
+
+/* Modal Styles */
+.modal {
+    display: none; /* Hidden by default */
+    position: fixed;
+    z-index: 1000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0, 0, 0, 0.5); /* Black background with opacity */
+}
+
+/* Modal Content */
+.modal-content {
+    background-color: #fff;
+    margin: 15% auto; /* Center vertically and horizontally */
+    padding: 20px;
+    border-radius: 8px;
+    width: 400px; /* Set modal width */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    position: relative;
+}
+
+/* Close Button */
+.close-button {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.close-button:hover,
+.close-button:focus {
+    color: #000;
+    text-decoration: none;
+    cursor: pointer;
+}
+.note-return{
+    font-size: 15px;
+}
+

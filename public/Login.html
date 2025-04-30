@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+</head>
+<body>
+    <div class="container">
+        <div class="introLine">
+            <h1>Welcome To Library <br>Portal</h1>
+            <p>Your Gateway to Unlimited Knowledge</p>
+        </div>
+        <div class="form">
+            <form id="loginForm">
+                <h3>Login</h3>
+                <hr>
+                <label for="name" class="name">Username</label>
+                <br>
+                <input type="text" id="name" placeholder="username" required>
+                <br>
+                <label for="password" class="name">Password</label>
+                <br>
+                <input type="password" id="password" placeholder="password" required>
+                <br>
+                <label class="name">Role</label>
+                <br>
+                <input type="radio" id="student" name="role" value="Student" required> <label for="student">Student</label>
+                <br>
+                <input type="radio" id="librarian" name="role" value="Librarian"> <label for="librarian">Librarian</label>
+                <br>
+                <button type="submit" id="login">Login</button>
+                <button type="button" id="signup" onclick='changeLocation()'>Sign Up</button>
+                <p class="forgot"><a href="#" id="forgotPasswordLink">Forgot Password?</a> Reset it...</p>
+                <p class="new">New here? <a href="http://localhost:3000/Signup">Create an Account</a> to explore.</p>
+            </form>
+        </div>
+    </div>
+
+    <!-- Forgot Password Modal -->
+    <div class="modal" id="forgotPasswordModal">
+        <div class="modal-content">
+            <span class="close" id="closeModal" style="font-size: 40px;">&times;</span>
+            <h3>Reset Password</h3>
+            <form id="forgotPasswordForm">
+                <label for="forgotUsername" class="lab1">Username</label>
+                <input type="text" id="forgotUsername" placeholder="Enter your username" required>
+                <label for="newPassword" class="lab2">New Password</label>
+                <input type="password" id="newPassword" placeholder="Enter new password" required>
+                <button type="submit" id="reset-btn">Reset Password</button>
+            </form>
+        </div>
+    </div>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+        }
+        .container {
+            height: 100vh;
+            width: 100%;
+            background-color: #09152D;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .introLine {
+            width: 55%;
+            height: 200px;
+            color: #fff;
+            text-align: center;
+            font-size: 30px;
+        }
+        .form {
+            height: 200px;
+            width: 45%;
+            margin-top: -250px;
+        }
+        form {
+            width: 370px;
+            height: 500px;
+            border: 2px solid #000;
+            color: #fff;
+            padding: 30px;
+            box-shadow: 10px 10px 5px black;
+        }
+        .form hr {
+            width: 300px;
+            margin-left: 5px;
+            margin-top: 20px;
+            margin-bottom: 20px;
+        }
+        .form h3 {
+            color: #fff;
+            margin-top: 40px;
+            text-align: center;
+        }
+        #name, #password {
+            outline: none;
+            padding: 5px;
+            width: 300px;
+            margin-top: 5px;
+            margin-bottom: 20px;
+        }
+        #login {
+            outline: none;
+            padding: 5px;
+            width: 300px;
+            margin-top: 5px;
+            margin-bottom: 20px;
+            background-color: #2C7A46;
+            color: #fff;
+        }
+        #reset-btn{
+            outline: none;
+            padding: 5px;
+            width: 300px;
+            margin-top: 5px;
+            margin-bottom: 20px;
+            background-color: #2C7A46;
+            color: #fff;
+
+        }
+        #signup {
+            outline: none;
+            padding: 5px;
+            width: 300px;
+            margin-top: 5px;
+            margin-bottom: 20px;
+            background-color: #218FF0;
+            color: #fff;
+        }
+        .forgot {
+            text-align: center;
+        }
+        .new {
+            text-align: center;
+        }
+        a {
+            text-decoration: none;
+        }
+      
+    </style>
+
+
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+        }
+     
+        .modal h3{
+            color: #fff;
+            font-size: 25px;
+            padding-bottom: 10px;
+        }
+        .modal form {
+            width: 800px;
+            padding: 30px;
+            background-color: #fff;
+            color: #09152D;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+         box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.3);
+         border-radius: 10px;
+            
+        }
+        .lab1{
+            font-size: 20px;
+            margin-left: -200px;
+        }
+        .lab2{
+            font-size: 20px;
+            margin-left: -180px;
+        }
+        #name, #password, #forgotUsername, #newPassword {
+            padding: 10px;
+            width: 300px;
+            margin: 10px 0;
+            border: 2px solid #09152D;
+        }
+        #name, #password, #forgotUsername, #newPassword::placeholder{
+            color: black;
+            
+        }
+        #login, #signup {
+            padding: 5px;
+            width: 300px;
+            margin: 10px 0;
+        }
+        .forgot, .new {
+            text-align: center;
+        }
+        a {
+            text-decoration: none;
+        }
+        .modal {
+            display: none;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+           padding: 20px;
+           font-size: 30px;
+            box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.3);
+            z-index: 1000;
+            color: #fff;
+
+        }
+        .modal-content {
+            display: flex;
+            flex-direction: column;
+            
+        }
+        .close {
+            align-self: flex-end;
+            cursor: pointer;
+            font-size: 20px;
+        }
+    </style>
+
+    <script>
+           document.getElementById('loginForm').addEventListener('submit', async function(event) {
+        event.preventDefault();
+
+        const username = document.getElementById('name').value;
+        const password = document.getElementById('password').value;
+        const role = document.querySelector('input[name="role"]:checked').value;
+
+        try {
+            const response = await fetch('/login', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ username, password, role }),
+            });
+
+            const result = await response.json();
+
+            if (response.ok) {
+                window.location.href = result.redirect;
+            } else {
+                alert(result.message || 'Login failed.');
+            }
+        } catch (error) {
+            console.error('Error logging in:', error);
+            alert('An error occurred. Please try again.');
+        }
+    });
+       function changeLocation(){
+        link= "http://localhost:3000/Signup";
+    
+        location.href=link;
+       }
+        // Forgot Password
+        const forgotPasswordLink = document.getElementById('forgotPasswordLink');
+        const forgotPasswordModal = document.getElementById('forgotPasswordModal');
+        const closeModal = document.getElementById('closeModal');
+        const forgotPasswordForm = document.getElementById('forgotPasswordForm');
+
+        forgotPasswordLink.addEventListener('click', () => {
+            forgotPasswordModal.style.display = 'block';
+        });
+
+        closeModal.addEventListener('click', () => {
+            forgotPasswordModal.style.display = 'none';
+        });
+
+        forgotPasswordForm.addEventListener('submit', async function(event) {
+            event.preventDefault();
+
+            const username = document.getElementById('forgotUsername').value;
+            const newPassword = document.getElementById('newPassword').value;
+
+            try {
+                const response = await fetch('/forgot-password', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ username, newPassword }),
+                });
+
+                const result = await response.json();
+
+                if (response.ok) {
+                    alert(result.message || 'Password reset successful.');
+                    forgotPasswordModal.style.display = 'none';
+                } else {
+                    alert(result.message || 'Failed to reset password.');
+                }
+            } catch (error) {
+                console.error('Error resetting password:', error);
+                alert('An error occurred. Please try again.');
+            }
+        });
+    </script>
+</body>
+</html>

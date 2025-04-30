@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <!-- Borrow History Button -->
+<a href="#" id="borrow-history-btn" class="btn btn-secondary mt-3" data-bs-toggle="modal" data-bs-target="#borrowHistoryModal">
+    Borrow History
+</a>
+
+<!-- Borrow History Modal -->
+<a href="#" data-bs-toggle="modal" data-bs-target="#borrowHistoryModal">Borrow History</a>
+
+<!-- Modal -->
+<div class="modal fade" id="borrowHistoryModal" tabindex="-1" aria-labelledby="borrowHistoryLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="borrowHistoryLabel">Borrow History</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <div id="username-input-section">
+                    <input type="text" id="username" placeholder="Enter Student Name" />
+                    <button id="fetch-history-btn">Fetch History</button>
+                </div>
+                <div id="borrow-history-container" class="parent">
+                    <!-- Borrow history cards will go here -->
+                </div>
+                <p id="no-data-message" style="display: none;">No borrow history found for the given student.</p>
+            </div>
+        </div>
+    </div>
+</div
+
+<script>
+    const fetchHistoryBtn = document.getElementById('fetch-history-btn');
+    const usernameInput = document.getElementById('username');
+    const borrowHistorySection = document.getElementById('borrow-history-section');
+    const borrowHistoryGrid = document.getElementById('borrow-history-grid');
+    const noDataMessage = document.getElementById('no-data-message');
+
+    // Fetch Borrow History
+    fetchHistoryBtn.addEventListener('click', async () => {
+        const username = usernameInput.value.trim();
+
+        if (!username) {
+            alert("Please enter a username.");
+            return;
+        }
+
+        // Clear previous data
+        borrowHistoryGrid.innerHTML = '';
+        borrowHistorySection.classList.add('d-none');
+        noDataMessage.classList.add('d-none');
+
+        try {
+            // Fetch data from the backend
+            const response = await fetch(`/api/borrow-history?username=${username}`);
+            const historyData = await response.json();
+
+            if (historyData.length === 0) {
+                noDataMessage.classList.remove('d-none');
+                return;
+            }
+
+            // Populate Borrow History Grid
+            historyData.forEach(book => {
+                const bookDiv = document.createElement('div');
+                bookDiv.classList.add('div1');
+                bookDiv.innerHTML = `
+                    <div class="img">
+                        <img src="${book.image || 'default-book.png'}" alt="Book Image">
+                    </div>
+                    <div class="book-details">
+                        <h5>${book.title}</h5>
+                        <p>written by ${book.author}</p>
+                        <p>Due Date: <span>${book.due_date || 'N/A'}</span></p>
+                        <button class="btn btn-success">${book.returned ? 'Returned' : 'Pending'}</button>
+                    </div>
+                `;
+                borrowHistoryGrid.appendChild(bookDiv);
+            });
+
+            // Show Borrow History Section
+            borrowHistorySection.classList.remove('d-none');
+        } catch (error) {
+            console.error("Error fetching borrow history:", error);
+            alert("Failed to fetch borrow history. Please try again later.");
+        }
+    });
+</script>
+<style>
+    .parent {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 20px;
+    padding: 20px;
+}
+.div1 {
+    border: 1px solid #ccc;
+    padding: 15px;
+    border-radius: 10px;
+    text-align: center;
+    background-color: #f9f9f9;
+    transition: transform 0.2s;
+}
+.div1:hover {
+    transform: scale(1.05);
+}
+.img img {
+    max-height: 150px;
+    width: auto;
+    margin-bottom: 10px;
+}
+.book-details h5 {
+    margin: 5px 0;
+}
+.book-details p {
+    margin: 2px 0;
+}
+.book-details button {
+    margin-top: 10px;
+}
+/* Borrow History Modal Styling */
+.modal-content {
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+}
+
+.modal-header {
+    background-color: #007bff;
+    color: #fff;
+    padding: 15px 20px;
+    border-bottom: 1px solid #ddd;
+}
+
+.modal-header h5 {
+    margin: 0;
+    font-size: 1.25rem;
+    font-weight: bold;
+}
+
+.modal-body {
+    padding: 20px;
+}
+
+#username-input-section {
+    text-align: center;
+}
+
+#username {
+    max-width: 400px;
+    margin: 0 auto;
+    font-size: 1rem;
+    padding: 8px 12px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+#fetch-history-btn {
+    margin-top: 10px;
+    padding: 8px 16px;
+    font-size: 1rem;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+}
+
+#fetch-history-btn:hover {
+    background-color: #0056b3;
+}
+
+/* Borrow History Grid Styling */
+.parent {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 20px;
+    padding: 20px;
+}
+
+.div1 {
+    border: 1px solid #ddd;
+    padding: 15px;
+    border-radius: 10px;
+    background-color: #f9f9f9;
+    text-align: center;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.div1:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.img img {
+    max-height: 150px;
+    width: auto;
+    border-radius: 5px;
+    margin-bottom: 10px;
+    object-fit: cover;
+}
+
+.book-details h5 {
+    font-size: 1.1rem;
+    font-weight: bold;
+    color: #333;
+    margin-bottom: 5px;
+}
+
+.book-details p {
+    margin: 5px 0;
+    font-size: 0.9rem;
+    color: #555;
+}
+
+.book-details span {
+    font-weight: bold;
+    color: #007bff;
+}
+
+.book-details button {
+    margin-top: 10px;
+    padding: 8px 12px;
+    font-size: 0.9rem;
+    background-color: #28a745;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.book-details button:hover {
+    background-color: #218838;
+}
+
+/* No Data Message */
+#no-data-message {
+    font-size: 1rem;
+    font-weight: bold;
+    margin-top: 20px;
+}
+
+/* Small Screens */
+@media (max-width: 576px) {
+    .modal-content {
+        padding: 10px;
+    }
+
+    .parent {
+        grid-template-columns: 1fr;
+    }
+
+    .div1 {
+        padding: 10px;
+    }
+
+    .img img {
+        max-height: 100px;
+    }
+
+    .book-details h5 {
+        font-size: 1rem;
+    }
+
+    .book-details p {
+        font-size: 0.8rem;
+    }
+
+    .book-details button {
+        font-size: 0.8rem;
+    }
+}
+
+
+</style>
+</body>
+</html>
